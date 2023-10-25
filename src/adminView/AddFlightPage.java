@@ -86,13 +86,13 @@ public class AddFlightPage extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Flight Number");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(113, 106, 121, 13);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Departure");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_1_1.setBounds(113, 135, 121, 13);
 		contentPane.add(lblNewLabel_1_1);
@@ -103,7 +103,7 @@ public class AddFlightPage extends JFrame {
 		contentPane.add(departureTextField);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Arrival");
-		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1_2.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_1_2.setBounds(113, 160, 121, 13);
 		contentPane.add(lblNewLabel_1_2);
@@ -114,7 +114,7 @@ public class AddFlightPage extends JFrame {
 		contentPane.add(arrivalTextField);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Departure Month");
-		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1_3.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_1_3.setBounds(113, 185, 121, 13);
 		contentPane.add(lblNewLabel_1_3);
@@ -125,7 +125,7 @@ public class AddFlightPage extends JFrame {
 		contentPane.add(monthTextField);
 		
 		JLabel lblNewLabel_1_4 = new JLabel("Departure Date");
-		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1_4.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_1_4.setBounds(113, 210, 121, 13);
 		contentPane.add(lblNewLabel_1_4);
@@ -136,7 +136,7 @@ public class AddFlightPage extends JFrame {
 		contentPane.add(dateTextField);
 		
 		JLabel lblNewLabel_1_5 = new JLabel("Dearture Hour");
-		lblNewLabel_1_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1_5.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_1_5.setBounds(113, 235, 121, 13);
 		contentPane.add(lblNewLabel_1_5);
@@ -147,7 +147,7 @@ public class AddFlightPage extends JFrame {
 		contentPane.add(hourTextField);
 		
 		JLabel lblNewLabel_1_6 = new JLabel("Departure Minutes");
-		lblNewLabel_1_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1_6.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_1_6.setBounds(113, 260, 121, 13);
 		contentPane.add(lblNewLabel_1_6);
@@ -157,10 +157,10 @@ public class AddFlightPage extends JFrame {
 		minutesTextField.setBounds(244, 258, 126, 19);
 		contentPane.add(minutesTextField);
 		
-		JLabel lblNewLabel_1_7 = new JLabel("Flight Duration");
-		lblNewLabel_1_7.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblNewLabel_1_7 = new JLabel("Flight Duration in Hours");
+		lblNewLabel_1_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1_7.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_1_7.setBounds(113, 289, 121, 13);
+		lblNewLabel_1_7.setBounds(66, 289, 168, 13);
 		contentPane.add(lblNewLabel_1_7);
 		
 		durationTextField = new JTextField();
@@ -169,7 +169,7 @@ public class AddFlightPage extends JFrame {
 		contentPane.add(durationTextField);
 		
 		JLabel lblNewLabel_1_8 = new JLabel("Duration In Mins");
-		lblNewLabel_1_8.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_8.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1_8.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_1_8.setBounds(113, 314, 121, 13);
 		contentPane.add(lblNewLabel_1_8);
