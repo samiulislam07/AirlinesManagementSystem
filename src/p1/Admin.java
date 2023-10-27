@@ -2,11 +2,13 @@ package p1;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import p1reqs.AssignedPilot;
 import p1reqs.FlightDetails;
 
 public class Admin extends User {
 
 	private String Id;
+	private FlightDetails fd;
 
 	public Admin(){
 		super();
@@ -24,58 +26,20 @@ public class Admin extends User {
 	public String getId() {
 		return Id;
 	}
-//	 void readFlight() {
-//		
-//		  try(ObjectInputStream ob1 = new ObjectInputStream(new FileInputStream("FDetails.dat")))
-//			{
-//			     f = (ArrayList<FlightDetails>) ob1.readObject();
-//			   
-//			}catch(Exception e) {
-//				System.out.println("IO error"+e);
-//			}
-//	}
 	
-//	public ArrayList<FlightDetails> viewFlight() {
-//		
-//		readFlight();
-//		return f;	
-//	}
-	
-
+	void readFlightAssgDetails() {
+		try(ObjectInputStream ob1 = new ObjectInputStream(new FileInputStream("FlightAssgDetails.dat"))){
+			ap =(ArrayList<AssignedPilot>)ob1.readObject();
+		}catch(Exception e){
+			System.out.println("Error!");
+		}
+	}
 	
 	public void addFlight(String flightNumber, String departure, String arrival, int month, int date, int hour,
 			int minutes, int duration, int durationMins) {
 		    
 		        readFlight();
-		        
-//				Scanner sc = new Scanner(System.in);
-//			    System.out.println("Enter 0 to quit:");
-//			    int intkey = 1; 
-//			    while(intkey!=0) {
-//			    System.out.println("Press 0 to quit or anything else to continue:");
-//			    intkey = sc.nextInt();
-//			    if(intkey==0)
-//			    	break;
-			    
-//			    sc.nextLine();
-//				System.out.println("Flight Number:");
-//				String a = sc.nextLine();
-//				System.out.println("Departure:");
-//				String b = sc.nextLine();
-//				System.out.println("Arrival:");
-//				String c = sc.nextLine();
-//				System.out.println("Enter Departure month:");
-//				int mon = sc.nextInt();
-//				System.out.println("Enter Departure date:");
-//				int dt = sc.nextInt();
-//				System.out.println("Enter Departure hour:");
-//				int hr = sc.nextInt();
-//				System.out.println("Enter Departure minutes:");
-//				int min = sc.nextInt(); 
-//				System.out.println("Enter Flight Duration hours:");
-//				int fhr = sc.nextInt();
-//				System.out.println("In mins:");
-//				int fmin = sc.nextInt();
+		        readFlightAssgDetails();
 				
 				FlightDetails fd = new FlightDetails();
 				fd.setFlightNumber(flightNumber);
@@ -84,6 +48,7 @@ public class Admin extends User {
 				fd.setDepartureDate(month, date, hour, minutes);
 				fd.setArrivalDate(duration,durationMins);
 				f.add(fd);
+				ap.add(new AssignedPilot(fd.getFlightNumber(), null));
 			    
 				writeFlight();	
 		}
@@ -109,15 +74,17 @@ public class Admin extends User {
 	public boolean deleteFlightDetails(String a) {
 		
 		  readFlight();
+		  readFlightAssgDetails();
 		  boolean flag = false;
 		  
 		  for(int i=0; i<f.size(); i++)
 		  {
-			  if(((f.get(i)).getFlightNumber()).equalsIgnoreCase(a))
+			  if(((f.get(i)).getFlightNumber()).equalsIgnoreCase(a) && ap.get(i).getFlightNumber().equalsIgnoreCase(a))
 			  { 
 				flag = true;
 				//return f.get(i);
 				f.remove(i);
+				ap.remove(i);
 				writeFlight();
 				return flag;
 				//System.out.println("Deleted successfully!");

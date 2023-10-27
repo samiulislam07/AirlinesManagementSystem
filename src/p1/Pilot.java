@@ -35,7 +35,8 @@ public class Pilot extends User{
 		if(flag==0) System.out.println("Invalid username or password!");
 		
 	}
-    private void readPilotDetails() {
+    
+	private void readPilotDetails() {
     	try(ObjectInputStream ob1 = new ObjectInputStream(new FileInputStream("PilotTeamDetails.dat")))
 		{
 		     p = (ArrayList)ob1.readObject();
@@ -65,8 +66,6 @@ public class Pilot extends User{
 			  }
 			  
 		  }
-//		  if(flag==0)
-//			  System.out.println("Flight Details Not Found!");
 		  
 		  return foundFlights;
 	}
@@ -84,16 +83,12 @@ public class Pilot extends User{
 	public boolean chooseFlight(String flightNumber) {
 		readFlight();//f
 		ArrayList<AssignedPilot> AssgPilots = this.viewFlightAssgDetails();
-//		Scanner sc = new Scanner(System.in);
-//		System.out.println("Enter Flight Number you want to chose:");
-//		String fn = sc.nextLine();
 		boolean flag = false;
 		for(int i=0; i<f.size(); i++)
 		{   
-			if(((f.get(i)).getFlightNumber().equalsIgnoreCase(flightNumber)))
-			{	
-				if(AssgPilots.get(i).pt==null){
-					//System.out.println("Assigning...");
+			if(((f.get(i)).getFlightNumber().equalsIgnoreCase(flightNumber)) && (AssgPilots.get(i).pt==null))
+			{
+					//Assigning
 					try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("SessionInfo.dat"))){
 						PilotTeam team = (PilotTeam)infile.readObject();
 						AssgPilots.get(i).pt = team;
@@ -102,7 +97,6 @@ public class Pilot extends User{
 					}catch(Exception e) {
 						System.out.println("Error");
 					}
-				}
 			}
 				  
 		}

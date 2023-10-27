@@ -1,5 +1,6 @@
 package p1;
 import p1reqs.FlightDetails;
+import p1reqs.AssignedPilot;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,6 +13,8 @@ public abstract class User {
 	private String userName;
 	private String password;
 	ArrayList<FlightDetails> f = new ArrayList<>();
+	ArrayList<AssignedPilot> ap = new ArrayList<>();
+	
 	User(){}
 	User(String userName, String password)
 	{
@@ -36,7 +39,6 @@ public abstract class User {
 	}
 
 	public void readFlight() {
-		
 		  try(ObjectInputStream ob1 = new ObjectInputStream(new FileInputStream("FDetails.dat")))
 			{
 			     f = (ArrayList<FlightDetails>) ob1.readObject();
@@ -45,6 +47,7 @@ public abstract class User {
 				System.out.println("IO error"+e);
 			}
 	}
+	
 	public void writeFlight() {
 		try(ObjectOutputStream ob1 = new ObjectOutputStream(new FileOutputStream("FDetails.dat")))
 		{
@@ -52,7 +55,14 @@ public abstract class User {
 		}catch(Exception e) {
 			System.out.println("Error!");
 		}
+		try(ObjectOutputStream ob1 = new ObjectOutputStream(new FileOutputStream("FlightAssgDetails.dat")))
+		{
+			ob1.writeObject(ap);
+		}catch(Exception e) {
+			System.out.println("Error!");
+		}
 	}
+	
 	public ArrayList<FlightDetails> viewFlight(){
 		readFlight();
 		return f;	

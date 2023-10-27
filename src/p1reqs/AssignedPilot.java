@@ -10,8 +10,13 @@ public class AssignedPilot implements Serializable {
 		
 		this.FlightNumber = FlightNumber;
 		this.pt = pt;
+	}
 	
-		
+	public String getFlightNumber() {
+		return FlightNumber;
+	}
+	public void setFlightNumber(String flightNumber) {
+		FlightNumber = flightNumber;
 	}
 
 	public String toString() {
