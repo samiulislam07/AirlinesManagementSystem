@@ -1,9 +1,10 @@
-package p1;
+package users;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import p1reqs.AssignedPilot;
-import p1reqs.FlightDetails;
+
+import flightManagement.FlightDetails;
+import pilotManagement.AssignedPilot;
 
 public class Admin extends User {
 

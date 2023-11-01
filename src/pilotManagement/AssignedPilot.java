@@ -1,4 +1,4 @@
-package p1reqs;
+package pilotManagement;
 import java.io.Serializable;
 
 public class AssignedPilot implements Serializable {

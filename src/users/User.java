@@ -1,12 +1,12 @@
-package p1;
-import p1reqs.FlightDetails;
-import p1reqs.AssignedPilot;
-
+package users;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import flightManagement.FlightDetails;
+import pilotManagement.AssignedPilot;
 
 public abstract class User {
 

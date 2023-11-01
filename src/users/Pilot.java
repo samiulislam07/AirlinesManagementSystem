@@ -1,4 +1,4 @@
-package p1;
+package users;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,7 +7,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import p1reqs.*;
+import flightManagement.FlightDetails;
+import pilotManagement.*;
 
 public class Pilot extends User{
 	ArrayList<PilotTeam> p = new ArrayList<>();

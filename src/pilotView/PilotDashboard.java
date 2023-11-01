@@ -7,7 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import adminView.ShowingFlightDetails;
 import adminView.UserTypeWindow;
-import p1reqs.PilotTeam;
+import pilotManagement.PilotTeam;
 
 import javax.swing.JButton;
 import java.awt.Font;

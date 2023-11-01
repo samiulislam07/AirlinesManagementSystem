@@ -1,8 +1,10 @@
-package p1reqs;
+package pilotManagement;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import flightManagement.FlightDetails;
 
 
 

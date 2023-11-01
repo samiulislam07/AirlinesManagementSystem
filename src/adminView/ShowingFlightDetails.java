@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import p1.Admin;
-import p1reqs.FlightDetails;
+import flightManagement.FlightDetails;
+import users.Admin;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;

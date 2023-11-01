@@ -1,15 +1,33 @@
-package p1reqs;
+package flightManagement;
 import java.util.Calendar;
 import java.util.Date;
 import java.io.Serializable;
 public class FlightDetails implements Serializable{
 
-	private String FlightNumber;
+	protected String FlightNumber;
 	private String Departure;
 	private String Arrival;
 	private Calendar DepartureDate = Calendar.getInstance();
 	private Calendar ArrivalDate = Calendar.getInstance();
+	private double flightduration;
+	private Seat[] seats = new Seat[100];
+//	private ArrayList<Seat> economyClass;
+//	private ArrayList<Seat> businessClass;
 	
+	public FlightDetails() {
+		for(int i=0; i<20; i++)
+		{
+			seats[i] = new Seat(i, "First Class");
+		}
+		for(int i=20; i<40; i++)
+		{
+			seats[i] = new Seat(i, "Economy Class");
+		}
+		for(int i=40; i<100; i++)
+		{
+			seats[i] = new Seat(i, "Business Class");
+		}
+	}
 	
 	
 	public void setFlightNumber(String FlightNumber)
@@ -31,15 +49,10 @@ public class FlightDetails implements Serializable{
 		ArrivalDate.set(2023, month-1, date, hour, minutes, 0);
 	}
     public void setArrivalDate(int hour, int minutes) {
-		
     	ArrivalDate.add(Calendar.HOUR, hour);
 		ArrivalDate.add(Calendar.MINUTE, minutes);
-		
-		
 	}
-    
-	
-	public Date getArrivalDate() {
+    public Date getArrivalDate() {
 		return ArrivalDate.getTime();
 	}
 	public String getFlightNumber() {
@@ -54,11 +67,22 @@ public class FlightDetails implements Serializable{
 	public Date getDepartureDate() {
 		return DepartureDate.getTime();
 	}
-	
-	
-	
-    
-	
+	public double getflightDuration() {
+		return flightduration;
+	}
+	public Seat[] getSeats() {
+		return seats;
+	}
+	public Seat getSeat(int seatNo) {
+		return seats[seatNo];
+	}
+
+
+	public void setSeats(Seat[] seats) {
+		this.seats = seats;
+	}
+
+
 	public String toString(){
 		
 		return "FlightNumber: "+FlightNumber+" Departure: "+Departure+" Arrival:"+Arrival+" Departure Date:"+getDepartureDate()+" Arrival Date:"+getArrivalDate();

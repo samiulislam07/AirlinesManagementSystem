@@ -132,9 +132,13 @@ public class AdminLoginPage extends JFrame {
 					while(i.hasNext()) {
 						 AdminCredentials admin = ( AdminCredentials) i.next();
 				            if (nameToCheck.equals(admin.getUserName()) && passToCheck.equals(admin.getPassWord())) {
+				            	try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("SessionInfo.dat"))){
+				            		outfile.writeObject(admin);
+				            	}
 				            	loginSuccessful = true; // Set the flag to true for a successful login
 				            	dispose();
 				            	AdminDashboard window = new AdminDashboard();
+				            	window.setLocationRelativeTo(null);
 				            	window.setVisible(true);
 			                    break; // Exit the loop when a match is found
 				            }

@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import p1.Admin;
-import p1reqs.PilotTeam;
+import pilotManagement.PilotTeam;
+import users.Admin;
 
 import javax.swing.JButton;
 import java.awt.Font;
@@ -147,6 +147,7 @@ public class AdminDashboard extends JFrame {
 		contentPane.add(UserLabel);
 		try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("SessionInfo.dat"))){
     		a = (AdminCredentials)infile.readObject();
+    		UserLabel.setText(a.getUserName());
     	}catch(Exception e) {
     		UserLabel.setText("");
     	}

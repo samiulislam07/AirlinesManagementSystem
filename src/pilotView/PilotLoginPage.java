@@ -1,10 +1,12 @@
 package pilotView;
-import p1reqs.PilotTeam;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import pilotManagement.PilotTeam;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
