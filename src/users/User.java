@@ -3,12 +3,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import flightManagement.FlightDetails;
 import pilotManagement.AssignedPilot;
 
-public abstract class User {
+public abstract class User implements Serializable{
 
 	private String userName;
 	private String password;

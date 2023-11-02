@@ -15,7 +15,6 @@ public class putInf {
 		
 	    	ArrayList<FlightDetails> fd = new ArrayList<>();
 	    	ArrayList<AssignedPilot> ap = new ArrayList<>();
-//	        ArrayList s;
 	 		FlightDetails f1 = new FlightDetails();
 	 		f1.setFlightNumber("ZS2021");
 	 		f1.setDeparture("Bangladesh Terminal 1");
@@ -57,7 +56,8 @@ public class putInf {
 	    	}
 	    	for(int i=0; i<ap.size(); i++) {
 	    		System.out.println(ap.get(i));
+	    	
 	    	}
 	    }
-	   
 }
+	  

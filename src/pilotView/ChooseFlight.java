@@ -41,6 +41,7 @@ public class ChooseFlight extends JFrame {
 			public void run() {
 				try {
 					ChooseFlight frame = new ChooseFlight();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,6 +67,7 @@ public class ChooseFlight extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				PilotDashboard window = new PilotDashboard();
 				dispose();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});
@@ -87,35 +89,6 @@ public class ChooseFlight extends JFrame {
 		contentPane.add(lblEnterFlightNumber);
 		
 		flightNumberTextField = new JTextField();
-		flightNumberTextField.addKeyListener(new KeyAdapter() {
-//			@Override
-//			public void keyPressed(KeyEvent e) {
-//				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-//					try {
-//						Admin a = new Admin();
-//						ArrayList<FlightDetails> foundFlight = a.searchFlight(textField.getText());
-//						if(foundFlight.size() == 0) {
-//							JOptionPane.showMessageDialog(null, "Sorry! Flight is not FOUND");
-//						}else {
-//							for(int i=0; i<foundFlight.size(); i++) {
-//								FlightInfotextPane.setText("FlightNumber: "+foundFlight.get(i).getFlightNumber()
-//								+"\nDeparture: "+foundFlight.get(i).getDeparture()
-//								+"\nArrival:"+foundFlight.get(i).getArrival()
-//								+"\nDeparture Date:"+foundFlight.get(i).getDepartureDate()
-//								+"\nArrival Date:"+foundFlight.get(i).getArrivalDate());
-//							}
-//							
-//						}
-//											
-//						}
-//						catch(Exception exc) {
-//							JOptionPane.showMessageDialog(null, "Sorry! Flight is not FOUND");
-//							//exc.printStackTrace();
-//						}
-//				}
-//				
-//			}
-		});
 		flightNumberTextField.setColumns(10);
 		flightNumberTextField.setBounds(174, 234, 96, 19);
 		contentPane.add(flightNumberTextField);

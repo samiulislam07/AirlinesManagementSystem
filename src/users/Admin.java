@@ -104,6 +104,20 @@ public class Admin extends User {
 		  
 	}
 	
+	public static void addCustomer(Customer c) {
+		try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("CustomerCredentials.dat"))){
+			ArrayList<Customer> customer = (ArrayList<Customer>)infile.readObject();
+			customer.add(c);
+			try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("CustomerCredentials.dat"))){
+				outfile.writeObject(customer);
+			}
+		}catch(ClassNotFoundException e) {
+			System.out.println("Class Not Found");
+		}catch(IOException e) {
+			System.out.println("IOException "+e);
+		}
+	}
+	
 
 	}
 

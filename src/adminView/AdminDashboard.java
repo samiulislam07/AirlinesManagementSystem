@@ -34,6 +34,7 @@ public class AdminDashboard extends JFrame {
 			public void run() {
 				try {
 					AdminDashboard frame = new AdminDashboard();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -88,9 +89,8 @@ public class AdminDashboard extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-//				UserTypeWindow window = new UserTypeWindow();
-//				window.setVisible(true);
 				ShowingFlightDetails window = new ShowingFlightDetails();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});
@@ -104,6 +104,7 @@ public class AdminDashboard extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				AddFlightPage window = new AddFlightPage();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 				 
 				
@@ -119,6 +120,7 @@ public class AdminDashboard extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				ShowingFlightDetails window = new ShowingFlightDetails();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});
@@ -132,6 +134,7 @@ public class AdminDashboard extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				DeleteFlightPage window = new DeleteFlightPage();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});

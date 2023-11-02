@@ -37,6 +37,7 @@ public class PilotDashboard extends JFrame {
 			public void run() {
 				try {
 					PilotDashboard frame = new PilotDashboard();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -92,6 +93,7 @@ public class PilotDashboard extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ShowFlightDetails window = new ShowFlightDetails();
 				dispose();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});
@@ -105,6 +107,7 @@ public class PilotDashboard extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ChooseFlight window = new ChooseFlight();
 				dispose();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});
@@ -138,11 +141,6 @@ public class PilotDashboard extends JFrame {
 		captainTextPane.setBounds(139, 146, 248, 119);
 		contentPane.add(captainTextPane);
 		captainTextPane.setText(t.ob[0].toString());
-//		try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("SessionInfo.dat"))){
-//			
-//		}catch(Exception e) {
-//			
-//		}
 		
 		JTextPane CoPilotTextPane = new JTextPane();
 		CoPilotTextPane.setBackground(Color.CYAN);

@@ -1,32 +1,55 @@
 package users;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import flightManagement.FlightDetails;
 import flightManagement.Seat;
 
-public class Customer extends User{
+public class Customer extends User implements Serializable{
 
 	private String name;
-	private String age;
+	private int age;
 	private String contact;
 	private double cost=0;
-	//ArrayList<Seat> fl = new ArrayList<>();
 	
 	
-	public Customer(String name, String age, String contact, double cost, ArrayList<Seat> fl, String userName, String password) {
+	public Customer(String name, int age, String contact, String userName, String password) {
 		super(userName,password);
 		this.name = name;
 		this.age = age;
 		this.contact = contact;
-		this.cost = cost;
 	}
 	Customer(String userName, String password)
 	{
 		super(userName,password);
 	}
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+	public double getCost() {
+		return cost;
+	}
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
 	private void readseatDetails(String flightNumber) {
 		readFlight();
 		for(int i=0; i<f.size(); i++) {
@@ -47,7 +70,7 @@ public class Customer extends User{
 		  readFlight();
 	      
 		  Scanner sc = new Scanner(System.in);
-		  System.out.println("Flight Number to view which seats of that flight are available:");
+		  System.out.println("");
 		  String b = sc.nextLine();
 		  
 		  int flag = 0;
@@ -157,6 +180,12 @@ public class Customer extends User{
 		// TODO Auto-generated method stub
 		return null;
 	}
-		  
+	@Override
+	public String toString() {
+		return "name= " + name + ", age= " + age + ", contact= " + contact + ", cost= " + cost;
 	}
+	
+	
+		  
+}
 

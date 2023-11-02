@@ -40,6 +40,7 @@ public class AdminLoginPage extends JFrame {
 			public void run() {
 				try {
 					AdminLoginPage frame = new AdminLoginPage();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -86,6 +87,7 @@ public class AdminLoginPage extends JFrame {
 					            	loginSuccessful = true; // Set the flag to true for a successful login
 					            	dispose();
 					            	AdminDashboard window = new AdminDashboard();
+					            	window.setLocationRelativeTo(null);
 					            	window.setVisible(true);
 				                    break; // Exit the loop when a match is found
 					            }
@@ -164,6 +166,7 @@ public class AdminLoginPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				UserTypeWindow window = new UserTypeWindow();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});

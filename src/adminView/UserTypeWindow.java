@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import customerView.CustomerLoginPage;
 import pilotView.PilotLoginPage;
 
 import javax.swing.JTextPane;
@@ -31,6 +32,7 @@ public class UserTypeWindow extends JFrame {
 			public void run() {
 				try {
 					UserTypeWindow frame = new UserTypeWindow();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,6 +72,7 @@ public class UserTypeWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				AdminLoginPage loginWindow = new AdminLoginPage();
+				loginWindow.setLocationRelativeTo(null);
 				loginWindow.setVisible(true);
 			}
 		});
@@ -82,6 +85,7 @@ public class UserTypeWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				PilotLoginPage window = new PilotLoginPage();
 				dispose();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});
@@ -90,6 +94,14 @@ public class UserTypeWindow extends JFrame {
 		contentPane.add(btnPilot);
 		
 		JButton btnCustomer = new JButton("Customer");
+		btnCustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CustomerLoginPage window = new CustomerLoginPage();
+				dispose();
+				window.setLocationRelativeTo(null);
+				window.setVisible(true);
+			}
+		});
 		btnCustomer.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		btnCustomer.setBounds(562, 222, 118, 21);
 		contentPane.add(btnCustomer);

@@ -1,6 +1,8 @@
 package flightManagement;
 
-public class Seat{
+import java.io.Serializable;
+
+public class Seat implements Serializable{
 	private String passengerName;
 	private int seatNo;
 	private String type;

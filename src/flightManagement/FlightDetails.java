@@ -11,8 +11,6 @@ public class FlightDetails implements Serializable{
 	private Calendar ArrivalDate = Calendar.getInstance();
 	private double flightduration;
 	private Seat[] seats = new Seat[100];
-//	private ArrayList<Seat> economyClass;
-//	private ArrayList<Seat> businessClass;
 	
 	public FlightDetails() {
 		for(int i=0; i<20; i++)
@@ -81,6 +79,7 @@ public class FlightDetails implements Serializable{
 	public void setSeats(Seat[] seats) {
 		this.seats = seats;
 	}
+	
 
 
 	public String toString(){

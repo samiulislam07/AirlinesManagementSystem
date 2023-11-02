@@ -41,6 +41,7 @@ public class DeleteFlightPage extends JFrame {
 			public void run() {
 				try {
 					DeleteFlightPage frame = new DeleteFlightPage();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -135,6 +136,7 @@ public class DeleteFlightPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				AdminDashboard window = new AdminDashboard();
 				dispose();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});

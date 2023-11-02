@@ -40,6 +40,7 @@ public class AddFlightPage extends JFrame {
 			public void run() {
 				try {
 					AddFlightPage frame = new AddFlightPage();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +54,7 @@ public class AddFlightPage extends JFrame {
 	 */
 	public AddFlightPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 498);
+		setBounds(100, 100, 501, 498);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -209,6 +210,7 @@ public class AddFlightPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				AdminDashboard window = new AdminDashboard();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});

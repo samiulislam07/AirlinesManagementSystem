@@ -39,6 +39,7 @@ public class ShowingFlightDetails extends JFrame {
 			public void run() {
 				try {
 					ShowingFlightDetails frame = new ShowingFlightDetails();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -95,6 +96,7 @@ public class ShowingFlightDetails extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				AdminDashboard window = new AdminDashboard();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});

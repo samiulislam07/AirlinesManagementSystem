@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import adminView.UserTypeWindow;
 import pilotManagement.PilotTeam;
 
 import javax.swing.JButton;
@@ -41,6 +42,7 @@ public class PilotLoginPage extends JFrame {
 			public void run() {
 				try {
 					PilotLoginPage frame = new PilotLoginPage();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,6 +64,14 @@ public class PilotLoginPage extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton_1 = new JButton("Go back");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserTypeWindow window = new UserTypeWindow();
+				dispose();
+				window.setLocationRelativeTo(null);
+				window.setVisible(true);
+			}
+		});
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		btnNewButton_1.setBounds(32, 32, 85, 21);
 		contentPane.add(btnNewButton_1);
@@ -111,6 +121,7 @@ public class PilotLoginPage extends JFrame {
 					            	loginSuccessful = true; // Set the flag to true for a successful login
 					            	dispose();
 					            	PilotDashboard window = new PilotDashboard();
+					            	window.setLocationRelativeTo(null);
 					            	window.setVisible(true);
 				                    break; // Exit the loop when a match is found
 					            }
@@ -151,6 +162,7 @@ public class PilotLoginPage extends JFrame {
 					            	loginSuccessful = true; // Set the flag to true for a successful login
 					            	dispose();
 					            	PilotDashboard window = new PilotDashboard();
+					            	window.setLocationRelativeTo(null);
 					            	window.setVisible(true);
 				                    break; // Exit the loop when a match is found
 					            }

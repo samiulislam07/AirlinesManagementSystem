@@ -42,16 +42,16 @@ public class Driver {
  			System.out.println("FDetails Written");
  		}
  		
-//		ArrayList<PilotTeam> pTeam = new ArrayList<>();
-//		PilotDetails[] team1 = {new PilotDetails("Samiul Islam",201,"Captain"), new PilotDetails("Faisal Hasan",202,"Co Pilot")};
-//    	PilotTeam p1 = new PilotTeam("ZRSA","02A","ahik", team1);
-//    	PilotDetails[] team2 = {new PilotDetails("Zach Fang",203,"Captain"), new PilotDetails("Zyan Rahman",204,"Co Pilot")};
-//    	PilotTeam p2 = new PilotTeam("ZRSB","02B","ahik",team2);
-//    	pTeam.add(p1); pTeam.add(p2);
-//    	try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("PilotTeamDetails.dat"))){
-// 			outfile.writeObject(pTeam);
-// 			System.out.println("PilotTeamDetails written");
-// 		}
+		ArrayList<PilotTeam> pTeam = new ArrayList<>();
+		PilotDetails[] team1 = {new PilotDetails("Samiul Islam",201,"Captain"), new PilotDetails("Faisal Hasan",202,"Co Pilot")};
+    	PilotTeam p1 = new PilotTeam("ZRSA","02A","ahik", team1);
+    	PilotDetails[] team2 = {new PilotDetails("Zach Fang",203,"Captain"), new PilotDetails("Zyan Rahman",204,"Co Pilot")};
+    	PilotTeam p2 = new PilotTeam("ZRSB","02B","ahik",team2);
+    	pTeam.add(p1); pTeam.add(p2);
+    	try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("PilotTeamDetails.dat"))){
+ 			outfile.writeObject(pTeam);
+ 			System.out.println("PilotTeamDetails written");
+ 		}
     	
 		ArrayList<AssignedPilot> AssgPilots = new ArrayList<>();
 		for(int i=0; i<ob.size(); i++)
