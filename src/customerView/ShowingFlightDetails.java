@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import flightManagement.FlightDetails;
 import users.Admin;
+import users.Customer;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -32,7 +33,6 @@ public class ShowingFlightDetails extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
 	private JList list;
 	private JScrollPane scrollPane;
 
@@ -58,7 +58,7 @@ public class ShowingFlightDetails extends JFrame {
 	 */
 	public ShowingFlightDetails() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 800, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -89,7 +89,7 @@ public class ShowingFlightDetails extends JFrame {
 		textField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Admin a = new Admin();
+					Customer a = new Customer();
 					ArrayList<FlightDetails> f = a.searchFlight(textField.getText());
 					if(f.size() == 0) {
 						JOptionPane.showMessageDialog(null, "Sorry! Flight is not FOUND");
@@ -125,6 +125,7 @@ public class ShowingFlightDetails extends JFrame {
 		contentPane.add(scrollPane);
 		
 		list = new JList();
+		list.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		scrollPane.setViewportView(list);
 		Admin a = new Admin();
 		ArrayList<FlightDetails> f = a.viewFlight();
@@ -133,27 +134,5 @@ public class ShowingFlightDetails extends JFrame {
 			DLM.addElement(f.get(i));
 		}
 		list.setModel(DLM);
-		
-		JLabel lblNewLabel = new JLabel("Enter Flight Number to view available seats :");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		lblNewLabel.setBounds(50, 369, 313, 13);
-		contentPane.add(lblNewLabel);
-		
-		textField_1 = new JTextField();
-		textField_1.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					ShowingSeatDetails window = new ShowingSeatDetails(textField_1.getText());
-					dispose();
-					window.setLocationRelativeTo(null);
-					window.setVisible(true);
-				}
-			}
-		});
-		textField_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		textField_1.setColumns(10);
-		textField_1.setBounds(357, 367, 127, 19);
-		contentPane.add(textField_1);
 	}
 }

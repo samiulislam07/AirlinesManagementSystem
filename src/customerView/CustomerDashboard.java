@@ -158,6 +158,10 @@ public class CustomerDashboard extends JFrame {
 		JButton btnNewButton = new JButton("View Ongoing Flight Schedules");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ShowingFlightDetails window = new ShowingFlightDetails();
+				dispose();
+				window.setLocationRelativeTo(null);
+				window.setVisible(true);
 			}
 		});
 		btnNewButton.setForeground(Color.RED);
@@ -165,17 +169,19 @@ public class CustomerDashboard extends JFrame {
 		btnNewButton.setBounds(465, 161, 248, 21);
 		contentPane.add(btnNewButton);
 		
-		JButton btnSearchFlightSchedule = new JButton("Search Flight Schedule");
+		JButton btnSearchFlightSchedule = new JButton("Buy More Tickets!!!");
+		btnSearchFlightSchedule.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TicketBookingPage window = new TicketBookingPage();
+				dispose();
+				window.setLocationRelativeTo(null);
+				window.setVisible(true);
+			}
+		});
 		btnSearchFlightSchedule.setForeground(Color.BLUE);
 		btnSearchFlightSchedule.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		btnSearchFlightSchedule.setBounds(488, 202, 197, 21);
 		contentPane.add(btnSearchFlightSchedule);
-		
-		JButton btnDeleteFlightSchedule = new JButton("Delete Flight Schedule");
-		btnDeleteFlightSchedule.setForeground(Color.RED);
-		btnDeleteFlightSchedule.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		btnDeleteFlightSchedule.setBounds(488, 241, 197, 21);
-		contentPane.add(btnDeleteFlightSchedule);
 		
 		JLabel nameField = new JLabel();
 		nameField.setFont(new Font("Times New Roman", Font.PLAIN, 18));

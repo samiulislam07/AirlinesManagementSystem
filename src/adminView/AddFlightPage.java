@@ -184,6 +184,12 @@ public class AddFlightPage extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					
+					String flightNumber = flightNumbertextField.getText();
+					if(flightNumber.matches("ZIS[0-9]{4}")==false)
+					{
+						throw new FlightNumberException("Enter Valid Flight Number!");
+					}
 					Admin a = new Admin();
 					a.addFlight(flightNumbertextField.getText(), departureTextField.getText(),
 							arrivalTextField.getText(), Integer.parseInt(monthTextField.getText()),
@@ -194,6 +200,8 @@ public class AddFlightPage extends JFrame {
 							Integer.parseInt(durationMinsTextField.getText()));
 					
 					JOptionPane.showMessageDialog(null, "Flight Added Successfully");
+				}catch(FlightNumberException exc) {
+					JOptionPane.showMessageDialog(null, exc);
 				}catch(Exception exc) {
 					JOptionPane.showMessageDialog(null, "Error");
 				}

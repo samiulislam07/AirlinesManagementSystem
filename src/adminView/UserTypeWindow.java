@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class UserTypeWindow extends JFrame {
 
@@ -105,5 +106,10 @@ public class UserTypeWindow extends JFrame {
 		btnCustomer.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		btnCustomer.setBounds(562, 222, 118, 21);
 		contentPane.add(btnCustomer);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\USER\\Downloads\\pic1 (2).PNG"));
+		lblNewLabel.setBounds(10, 11, 774, 439);
+		contentPane.add(lblNewLabel);
 	}
 }

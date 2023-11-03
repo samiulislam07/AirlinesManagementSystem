@@ -15,7 +15,7 @@ import customerView.CustomerDashboard;
 public class PutInf {
 	public static void main(String[] args) {
 		ArrayList<Customer> customer = new ArrayList<>();
-		customer.add(new Customer("Zuhayer Islam", 20, "01819515151", "zuhayer", "3200"));
+		customer.add(new Customer("Zubair Islam", 17, "01819515151", "zubair", "3200"));
 		customer.add(new Customer("Samiul Islam", 20, "01745725482", "samiul", "3199"));
 		customer.add(new Customer("Shefa Tabassum", 20, "01654517351", "shefa", "0580"));
 		
@@ -36,26 +36,37 @@ public class PutInf {
 		System.out.println(e);
 		}
 		
-		Scanner sc = new Scanner(System.in);
-		String nameToCheck = sc.next();
-		String passToCheck = sc.next();
-		boolean loginSuccessful = false;
-		try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("CustomerCredentials.dat"))){
-			ArrayList<Customer> arr = (ArrayList<Customer>)infile.readObject();
-			for(int i=0; i<arr.size(); i++) {
-		            if (nameToCheck.equalsIgnoreCase(arr.get(i).getUserName()) && passToCheck.equalsIgnoreCase(arr.get(i).getPassword())) {
-		            	loginSuccessful = true;
-	                    break;
-		            }
-			}
-		}catch(Exception ex) {
-			ex.printStackTrace();
-		}
-		if (loginSuccessful) {
-            System.out.println("Login successful");
-        } else {
-        	System.out.println("Login unsuccessful");
-        }
+//		Scanner sc = new Scanner(System.in);
+//		String nameToCheck = sc.next();
+//		String passToCheck = sc.next();
+//		boolean loginSuccessful = false;
+//		try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("CustomerCredentials.dat"))){
+//			ArrayList<Customer> arr = (ArrayList<Customer>)infile.readObject();
+//			for(int i=0; i<arr.size(); i++) {
+//		            if (nameToCheck.equalsIgnoreCase(arr.get(i).getUserName()) && passToCheck.equalsIgnoreCase(arr.get(i).getPassword())) {
+//		            	loginSuccessful = true;
+//	                    break;
+//		            }
+//			}
+//		}catch(Exception ex) {
+//			ex.printStackTrace();
+//		}
+//		if (loginSuccessful) {
+//            System.out.println("Login successful");
+//        } else {
+//        	System.out.println("Login unsuccessful");
+//        }
+		
+		
+//		try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("SessionInfo.dat"))){
+//			Customer cust = (Customer)infile.readObject();
+//			System.out.println(cust.getCost());
+//		}catch(IOException e) {
+//			System.out.println(e);
+//		}catch(ClassNotFoundException e) {
+//		System.out.println(e);
+//		}
+		
 	}
 }
 

@@ -72,6 +72,7 @@ public class ShowingFlightDetails extends JFrame {
 		contentPane.add(scrollPane);
 		
 		JList list = new JList();
+		list.setFont(new Font("Times New Roman", Font.PLAIN, 10));
 		scrollPane.setViewportView(list);
 		
 		JButton btnLoadTable = new JButton("View Flights");

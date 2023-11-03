@@ -3,7 +3,6 @@ package flightManagement;
 import java.io.Serializable;
 
 public class Seat implements Serializable{
-	private String passengerName;
 	private int seatNo;
 	private String type;
 	private boolean status;
@@ -15,22 +14,12 @@ public class Seat implements Serializable{
 	}
 	
 	public Seat(String passengerName, int seatNo) {
-		super();
-		this.passengerName = passengerName;
 		this.seatNo = seatNo;
-		if(this.seatNo>=1 && this.seatNo<=20) this.type = "First Class";
-		else if(this.seatNo>=21 && this.seatNo<=40) this.type = "Economy Class";
-		else if(this.seatNo>=41 && this.seatNo<=100) this.type = "Business Class";
+		if(this.seatNo>=0 && this.seatNo<20) this.type = "First Class";
+		else if(this.seatNo>=20 && this.seatNo<40) this.type = "Business Class";
+		else if(this.seatNo>=41 && this.seatNo<100) this.type = "Economy Class";
 		status = true;
 		
-	}
-
-	public String getPassengerName() {
-		return passengerName;
-	}
-
-	public void setPassengerName(String passengerName) {
-		this.passengerName = passengerName;
 	}
 
 	public int getSeatNo() {
@@ -55,4 +44,11 @@ public class Seat implements Serializable{
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "Seat No: ZS" + seatNo + ", Type: " + type+"\n";
+	}
+	
+	
 }

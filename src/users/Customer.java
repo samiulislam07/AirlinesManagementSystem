@@ -1,5 +1,9 @@
 package users;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,7 +18,7 @@ public class Customer extends User implements Serializable{
 	private String contact;
 	private double cost=0;
 	
-	
+	public Customer() {}
 	public Customer(String name, int age, String contact, String userName, String password) {
 		super(userName,password);
 		this.name = name;
@@ -50,57 +54,31 @@ public class Customer extends User implements Serializable{
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
-	private void readseatDetails(String flightNumber) {
+	public Seat[] readseatDetails(String flightNumber) {
 		readFlight();
+		Seat[] availableSeats = null;
+		boolean flag = false;
 		for(int i=0; i<f.size(); i++) {
 			if(f.get(i).getFlightNumber().equalsIgnoreCase(flightNumber)) {
-				Seat[] seats = f.get(i).getSeats();
-				for(int j=0; j<seats.length; j++) {
-					if(seats[j].getStatus() == false) {
-						System.out.println(seats[j].getSeatNo());
-					}
-				}
+				availableSeats = f.get(i).getSeats();
+				flag = true;				
 			}
 		}
-		
-
+		return availableSeats;
 	}
 	
-	public void searchFlight() {
-		  readFlight();
-	      
-		  Scanner sc = new Scanner(System.in);
-		  System.out.println("");
-		  String b = sc.nextLine();
-		  
-		  int flag = 0;
-		  
-		  for(int i=0; i<f.size(); i++)
-		  {
-			  if(((f.get(i)).getFlightNumber().equalsIgnoreCase(b)))
-			  {
-				  flag = 1;
-				  readseatDetails(b);
-			  }
-			  if(flag==1) {
-				  break;
-			  }
-		  }
-		  if(flag==0)
-			  System.out.println("Flight Details Not Found!");
-	}
 	
-	public void costCalculation(int index, String seatType) {
+	public void costCalculation(int flightIndex, String seatType) {
 		
 		readFlight();
 	
 		if(seatType.compareTo("Economy Class")==0)
 	  {
-		if(f.get(index).getflightDuration()<=3)
+		if(f.get(flightIndex).getflightDuration()<=3)
 		{
 			cost += 20000;
 		}
-		else if(f.get(index).getflightDuration()>3 && f.get(index).getflightDuration()<=7)
+		else if(f.get(flightIndex).getflightDuration()>3 && f.get(flightIndex).getflightDuration()<=7)
 		{
 			cost += 40000;
 		}
@@ -111,11 +89,11 @@ public class Customer extends User implements Serializable{
 	}
 		else if(seatType.compareTo("Business Class")==0)
 		{
-			if(f.get(index).getflightDuration()<=3)
+			if(f.get(flightIndex).getflightDuration()<=3)
 			{
 				cost += 35000;
 			}
-			else if(f.get(index).getflightDuration()>3 && f.get(index).getflightDuration()<=7)
+			else if(f.get(flightIndex).getflightDuration()>3 && f.get(flightIndex).getflightDuration()<=7)
 			{
 				cost += 55000;
 			}
@@ -127,11 +105,11 @@ public class Customer extends User implements Serializable{
 		}
 		else {
 			
-			if(f.get(index).getflightDuration()<=3)
+			if(f.get(flightIndex).getflightDuration()<=3)
 			{
 				cost += 40000;
 			}
-			else if(f.get(index).getflightDuration()>3 && f.get(index).getflightDuration()<=7)
+			else if(f.get(flightIndex).getflightDuration()>3 && f.get(flightIndex).getflightDuration()<=7)
 			{
 				cost += 80000;
 			}
@@ -142,44 +120,81 @@ public class Customer extends User implements Serializable{
 			
 		}
 		
+		//updating SessionInfo file
+		try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("SessionInfo.dat"))){
+			outfile.writeObject(this);
+		}catch(Exception e) {
+			System.out.println("SessionInfo updation error: "+e);
+		}
+		
+		// updating cost in the main file
+		try(ObjectInputStream filein = new ObjectInputStream(new FileInputStream("CustomerCredentials.dat"))){
+			ArrayList<Customer> cust = (ArrayList<Customer>)filein.readObject();
+			for(int i=0; i<cust.size(); i++) {
+				if(cust.get(i).getName().equalsIgnoreCase(this.getName())) {
+					cust.remove(i);
+					cust.add(i, this);
+				}
+			}
+			try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("CustomerCredentials.dat"))){
+				outfile.writeObject(cust);
+			}
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
 	}
 	
-	public void buyTicket() {
+	public String buyTicket(String flightNumber, int seatNumber) {
 		  readFlight();
 	      
-		  Scanner sc = new Scanner(System.in);
-		  System.out.println("Flight Number:");
-		  String b = sc.nextLine();
+		  //Scanner sc = new Scanner(System.in);
+		  //System.out.println("Flight Number:");
+		  //String b = sc.nextLine();
 
 		  int flag=0;
-		  for(int i=0; i<f.size(); i++)
-		  {
-			  if((f.get(i)).getFlightNumber().equalsIgnoreCase(b)){
+		  for(int i=0; i<f.size(); i++){
+			  if((f.get(i)).getFlightNumber().equalsIgnoreCase(flightNumber)){
 				  flag = 1;
-				  readseatDetails(b);
-				  System.out.println("Seat Number: ZS-");
-				  int c = sc.nextInt();
-				  if(f.get(i).getSeat(c).getStatus() == false) {
-					  costCalculation(i, f.get(i).getSeat(c).getType());
-					  f.get(i).getSeat(c).setStatus(true);
-					  System.out.println("Purchased successfully! Total cost: "+cost);
+				  readseatDetails(flightNumber);
+				  //System.out.println("Seat Number: ZS-");
+				  //int c = sc.nextInt();
+				  if(f.get(i).getSeat(seatNumber).getStatus() == false) {
+					  costCalculation(i, f.get(i).getSeat(seatNumber).getType());
+					  f.get(i).getSeat(seatNumber).setStatus(true);
+					  writeFlight();
+					  //System.out.println("Purchased successfully! Total cost: "+cost);
 				  }else {
-					  System.out.println("Seat is booked");
+					  return "Selected seat is already booked";
+					  //System.out.println("Seat is booked");
 				  }
 			  }
 			  if(flag==1) {
-				  sc.close();
+				  //sc.close();
 				  break;
 			  }
 		  }
+		  return "Successfully booked the seat";
 			  
 			  
 		  }
+	
 	@Override
-	ArrayList<FlightDetails> searchFlight(String a) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<FlightDetails> searchFlight(String a) {
+		readFlight();
+		  ArrayList<FlightDetails> foundFlights = new ArrayList<>();
+		  int flag = 0;
+		  
+		  for(int i=0; i<f.size(); i++)
+		  {
+			  if(((f.get(i)).getFlightNumber()).equalsIgnoreCase(a))
+			  {
+				  foundFlights.add(f.get(i));
+			  }
+		  }
+		  return foundFlights;
 	}
+	
 	@Override
 	public String toString() {
 		return "name= " + name + ", age= " + age + ", contact= " + contact + ", cost= " + cost;

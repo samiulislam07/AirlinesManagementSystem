@@ -19,11 +19,11 @@ public class FlightDetails implements Serializable{
 		}
 		for(int i=20; i<40; i++)
 		{
-			seats[i] = new Seat(i, "Economy Class");
+			seats[i] = new Seat(i, "Business Class");
 		}
 		for(int i=40; i<100; i++)
 		{
-			seats[i] = new Seat(i, "Business Class");
+			seats[i] = new Seat(i, "Economy Class");
 		}
 	}
 	

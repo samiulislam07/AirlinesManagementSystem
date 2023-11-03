@@ -5,6 +5,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import flightManagement.FlightDetails;
+import flightManagement.Ticket;
 import pilotManagement.AssignedPilot;
 import pilotManagement.PilotDetails;
 import pilotManagement.PilotTeam;
@@ -66,6 +67,13 @@ public class Driver {
 		try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("FlightAssgDetails.dat"))){
  			outfile.writeObject(AssgPilots);
  			System.out.println("FlightAssgDetails written");
+ 		}
+		
+		ArrayList<Ticket> ticketArr = new ArrayList<>();
+		ticketArr.add(new Ticket("name", "number", "class", "seat"));
+		try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("Tickets.dat"))){
+ 			outfile.writeObject(ticketArr);
+ 			System.out.println("ticketArr written");
  		}
 		
 //		Pilot p = new Pilot();
