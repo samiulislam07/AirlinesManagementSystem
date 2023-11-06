@@ -37,9 +37,6 @@ public class CustomerLoginPage extends JFrame {
 	private JTextField userName;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -54,9 +51,6 @@ public class CustomerLoginPage extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public CustomerLoginPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);

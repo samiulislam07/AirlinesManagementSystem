@@ -80,8 +80,6 @@ public class FlightDetails implements Serializable{
 		this.seats = seats;
 	}
 	
-
-
 	public String toString(){
 		
 		return "FlightNumber: "+FlightNumber+" Departure: "+Departure+" Arrival:"+Arrival+" Departure Date:"+getDepartureDate()+" Arrival Date:"+getArrivalDate();

@@ -2,6 +2,7 @@ package users;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -53,20 +54,7 @@ public class Customer extends User implements Serializable{
 	}
 	public void setCost(double cost) {
 		this.cost = cost;
-	}
-	public Seat[] readseatDetails(String flightNumber) {
-		readFlight();
-		Seat[] availableSeats = null;
-		boolean flag = false;
-		for(int i=0; i<f.size(); i++) {
-			if(f.get(i).getFlightNumber().equalsIgnoreCase(flightNumber)) {
-				availableSeats = f.get(i).getSeats();
-				flag = true;				
-			}
-		}
-		return availableSeats;
-	}
-	
+	}	
 	
 	public void costCalculation(int flightIndex, String seatType) {
 		
@@ -131,7 +119,7 @@ public class Customer extends User implements Serializable{
 		try(ObjectInputStream filein = new ObjectInputStream(new FileInputStream("CustomerCredentials.dat"))){
 			ArrayList<Customer> cust = (ArrayList<Customer>)filein.readObject();
 			for(int i=0; i<cust.size(); i++) {
-				if(cust.get(i).getName().equalsIgnoreCase(this.getName())) {
+				if(cust.get(i).getUserName().equalsIgnoreCase(this.getUserName())) {
 					cust.remove(i);
 					cust.add(i, this);
 				}
@@ -147,18 +135,11 @@ public class Customer extends User implements Serializable{
 	
 	public String buyTicket(String flightNumber, int seatNumber) {
 		  readFlight();
-	      
-		  //Scanner sc = new Scanner(System.in);
-		  //System.out.println("Flight Number:");
-		  //String b = sc.nextLine();
 
 		  int flag=0;
 		  for(int i=0; i<f.size(); i++){
 			  if((f.get(i)).getFlightNumber().equalsIgnoreCase(flightNumber)){
 				  flag = 1;
-				  readseatDetails(flightNumber);
-				  //System.out.println("Seat Number: ZS-");
-				  //int c = sc.nextInt();
 				  if(f.get(i).getSeat(seatNumber).getStatus() == false) {
 					  costCalculation(i, f.get(i).getSeat(seatNumber).getType());
 					  f.get(i).getSeat(seatNumber).setStatus(true);
@@ -170,7 +151,6 @@ public class Customer extends User implements Serializable{
 				  }
 			  }
 			  if(flag==1) {
-				  //sc.close();
 				  break;
 			  }
 		  }
@@ -178,6 +158,53 @@ public class Customer extends User implements Serializable{
 			  
 			  
 		  }
+	
+	public void editCustomerInfo(String text) {
+		try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("CustomerCredentials.dat"))){
+			ArrayList<Customer> cust = (ArrayList<Customer>)infile.readObject();
+			
+			for(int i=0; i<cust.size(); i++)
+			{
+				if(cust.get(i).getUserName().compareTo(getUserName())==0)
+					cust.get(i).setContact(text);
+			}
+			try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("SessionInfo.dat"))){
+				outfile.writeObject(this);
+			}catch(Exception e) {
+				System.out.println("SessionInfo updation error: "+e);
+			}
+			try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("CustomerCredentials.dat"))){
+				outfile.writeObject(cust);
+			}
+		}catch(ClassNotFoundException exc) {
+			System.out.println("Class Not Found");
+		}catch(IOException exc) {
+			System.out.println("IOException "+exc);
+		}
+	}
+	public void editCustomerInfo(int age) {
+		try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("CustomerCredentials.dat"))){
+			ArrayList<Customer> cust = (ArrayList<Customer>)infile.readObject();
+			
+			for(int i=0; i<cust.size(); i++)
+			{
+				if(cust.get(i).getUserName().compareTo(getUserName())==0)
+					cust.get(i).setAge(age);
+			}
+			try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("SessionInfo.dat"))){
+				outfile.writeObject(this);
+			}catch(Exception e) {
+				System.out.println("SessionInfo updation error: "+e);
+			}
+			try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("CustomerCredentials.dat"))){
+				outfile.writeObject(cust);
+			}
+		}catch(ClassNotFoundException exc) {
+			System.out.println("Class Not Found");
+		}catch(IOException exc) {
+			System.out.println("IOException "+exc);
+		}
+	}
 	
 	@Override
 	public ArrayList<FlightDetails> searchFlight(String a) {

@@ -10,12 +10,20 @@ import users.Admin;
 import users.Customer;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
@@ -28,9 +36,6 @@ public class CustomerSignUpPage extends JFrame {
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -45,9 +50,6 @@ public class CustomerSignUpPage extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public CustomerSignUpPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 500);
@@ -142,7 +144,33 @@ public class CustomerSignUpPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Customer customer = new Customer(nameField.getText(), Integer.parseInt(ageField.getText()),
 						contactField.getText(), usernameField.getText(), passwordField.getText());
-				Admin.addCustomer(customer);
+				try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("CustomerCredentials.dat"))){
+					ArrayList<Customer> cust = (ArrayList<Customer>)infile.readObject();
+					int flag=0;
+					for(int i=0; i<cust.size(); i++)
+					{
+						if(customer.getUserName().equals(cust.get(i).getUserName()))
+						{
+							flag=1;
+							throw new usernameException("Username is taken");
+							
+						}
+					}
+					if(flag==0)
+                  {     cust.add(customer);
+					    try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("CustomerCredentials.dat"))){
+							outfile.writeObject(cust);
+							JOptionPane.showMessageDialog(btnSignUp, "Signed up Successfully!");
+							}
+				  }
+					
+				}catch(usernameException exc) {
+					JOptionPane.showMessageDialog(btnSignUp, exc);
+				}catch(ClassNotFoundException exc) {
+					System.out.println("Class Not Found");
+				}catch(IOException exc) {
+					System.out.println("IOException "+exc);
+				}
 			}
 		});
 		btnSignUp.setForeground(Color.GREEN);

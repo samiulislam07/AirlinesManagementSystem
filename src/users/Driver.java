@@ -13,21 +13,21 @@ import pilotManagement.PilotTeam;
 public class Driver {
 	public static void main(String[] args) throws Exception{
 		FlightDetails f1 = new FlightDetails();
- 		f1.setFlightNumber("ZS2021");
+ 		f1.setFlightNumber("ZIS2021");
  		f1.setDeparture("Bangladesh");
  		f1.setArrival("Singapore");
  		f1.setDepartureDate(12, 1, 5, 45);
  		f1.setArrivalDate(1,20);
  		
  		FlightDetails f2 = new FlightDetails();
- 		f2.setFlightNumber("ZS2191");
+ 		f2.setFlightNumber("ZIS2191");
  		f2.setDeparture("Bangladesh");
  		f2.setArrival("Maylaysia");
  		f2.setDepartureDate(1, 1, 8, 15);
  		f2.setArrivalDate(2,0);
  		
  		FlightDetails f3 = new FlightDetails();
- 		f3.setFlightNumber("ZS9101");
+ 		f3.setFlightNumber("ZIS9101");
  		f3.setDeparture("Vietnam");
  		f3.setArrival("Maylaysia");
  		f3.setDepartureDate(1, 2, 10, 15);
@@ -69,12 +69,12 @@ public class Driver {
  			System.out.println("FlightAssgDetails written");
  		}
 		
-		ArrayList<Ticket> ticketArr = new ArrayList<>();
-		ticketArr.add(new Ticket("name", "number", "class", "seat"));
-		try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("Tickets.dat"))){
- 			outfile.writeObject(ticketArr);
- 			System.out.println("ticketArr written");
- 		}
+//		ArrayList<Ticket> ticketArr = new ArrayList<>();
+//		ticketArr.add(new Ticket("name", "number", "class", "seat"));
+//		try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("Tickets.dat"))){
+// 			outfile.writeObject(ticketArr);
+// 			System.out.println("ticketArr written");
+// 		}
 		
 //		Pilot p = new Pilot();
 //		ArrayList<AssignedPilot> AssgPilots = (ArrayList<AssignedPilot>)p.viewFlightAssgDetails();

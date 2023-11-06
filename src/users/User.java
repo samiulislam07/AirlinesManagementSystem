@@ -16,8 +16,8 @@ public abstract class User implements Serializable{
 	ArrayList<FlightDetails> f = new ArrayList<>();
 	ArrayList<AssignedPilot> ap = new ArrayList<>();
 	
-	User(){}
-	User(String userName, String password)
+	public User(){}
+	public User(String userName, String password)
 	{
 		this.userName = userName;
 		this.password = password;
@@ -68,5 +68,5 @@ public abstract class User implements Serializable{
 		readFlight();
 		return f;	
 	}
-	abstract ArrayList<FlightDetails> searchFlight(String a);
+	public abstract ArrayList<FlightDetails> searchFlight(String a);
 }

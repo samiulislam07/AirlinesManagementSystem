@@ -1,9 +1,9 @@
 package pilotManagement;
 import java.io.Serializable;
 public class PilotDetails implements Serializable {
-	public String Name;
-	public int Id;
-	public String Rank;
+	private String Name;
+	private int Id;
+	private String Rank;
 
 	public PilotDetails(String Name, int Id,String rank){
 	
@@ -13,7 +13,7 @@ public class PilotDetails implements Serializable {
 		
 	}
 
-	
+
 	public String toString() {
 		return "Pilot Name: "+Name+"\nRank: "+Rank+"\nId: "+Id;
 	}

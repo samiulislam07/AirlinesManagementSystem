@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class UserTypeWindow extends JFrame {
 
@@ -25,9 +26,6 @@ public class UserTypeWindow extends JFrame {
 	private JLabel txtZisAirlines;
 	private JLabel txtLogInAs;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -42,9 +40,6 @@ public class UserTypeWindow extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public UserTypeWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -55,6 +50,7 @@ public class UserTypeWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		txtZisAirlines = new JLabel();
+		txtZisAirlines.setForeground(Color.WHITE);
 		txtZisAirlines.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 22));
 		txtZisAirlines.setText("ZiS AIRLINES");
 		txtZisAirlines.setHorizontalAlignment(SwingConstants.CENTER);
@@ -62,6 +58,7 @@ public class UserTypeWindow extends JFrame {
 		contentPane.add(txtZisAirlines);
 		
 		txtLogInAs = new JLabel();
+		txtLogInAs.setForeground(Color.WHITE);
 		txtLogInAs.setText("Log In As");
 		txtLogInAs.setHorizontalAlignment(SwingConstants.CENTER);
 		txtLogInAs.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -108,8 +105,8 @@ public class UserTypeWindow extends JFrame {
 		contentPane.add(btnCustomer);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\USER\\Downloads\\pic1 (2).PNG"));
-		lblNewLabel.setBounds(10, 11, 774, 439);
+		lblNewLabel.setIcon(new ImageIcon("H:\\CodeWithHarry\\ZiSAirlines\\Picture\\AdobeStock_249454423-scaled.jpg"));
+		lblNewLabel.setBounds(0, 0, 786, 500);
 		contentPane.add(lblNewLabel);
 	}
 }

@@ -26,9 +26,6 @@ public class AdminDashboard extends JFrame {
 	private JPanel contentPane;
 	private AdminCredentials a;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -43,9 +40,6 @@ public class AdminDashboard extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public AdminDashboard() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -65,6 +59,7 @@ public class AdminDashboard extends JFrame {
             	}
 				dispose();
 				UserTypeWindow window = new UserTypeWindow();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});
@@ -106,8 +101,6 @@ public class AdminDashboard extends JFrame {
 				AddFlightPage window = new AddFlightPage();
 				window.setLocationRelativeTo(null);
 				window.setVisible(true);
-				 
-				
 			}
 		});
 		btnAddFlightSchedule.setForeground(Color.GREEN);

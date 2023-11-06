@@ -32,9 +32,6 @@ public class AdminLoginPage extends JFrame {
 	private JTextField userName;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -49,9 +46,6 @@ public class AdminLoginPage extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public AdminLoginPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -89,17 +83,15 @@ public class AdminLoginPage extends JFrame {
 					            	AdminDashboard window = new AdminDashboard();
 					            	window.setLocationRelativeTo(null);
 					            	window.setVisible(true);
-				                    break; // Exit the loop when a match is found
+				                    break;
 					            }
 						}
 					}catch(Exception ex) {
 						ex.printStackTrace();
 					}
 					if (loginSuccessful) {
-			            // Login successful
 			            JOptionPane.showMessageDialog(null, "Login successful! Welcome, " + nameToCheck, "Login Status", JOptionPane.INFORMATION_MESSAGE);
 			        } else {
-			            // Login failed
 			            JOptionPane.showMessageDialog(null, "Login failed. Please check your credentials.", "Login Status", JOptionPane.ERROR_MESSAGE);
 			        }
 				}
@@ -127,7 +119,7 @@ public class AdminLoginPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nameToCheck = userName.getText();
 				String passToCheck = passwordField.getText();
-				boolean loginSuccessful = false; // Flag to track login status
+				boolean loginSuccessful = false;
 				try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("AdminCredentials.dat"))){
 					ArrayList arr = (ArrayList)infile.readObject();
 					Iterator i = arr.iterator();
@@ -149,10 +141,8 @@ public class AdminLoginPage extends JFrame {
 					ex.printStackTrace();
 				}
 				if (loginSuccessful) {
-		            // Login successful
 		            JOptionPane.showMessageDialog(null, "Login successful! Welcome, " + nameToCheck, "Login Status", JOptionPane.INFORMATION_MESSAGE);
 		        } else {
-		            // Login failed
 		            JOptionPane.showMessageDialog(null, "Login failed. Please check your credentials.", "Login Status", JOptionPane.ERROR_MESSAGE);
 		        }
 			}

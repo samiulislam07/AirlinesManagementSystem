@@ -11,21 +11,20 @@ import flightManagement.FlightDetails;
 import pilotManagement.*;
 
 public class Pilot extends User{
-	ArrayList<PilotTeam> p = new ArrayList<>();
-	ArrayList<AssignedPilot> ap = new ArrayList<>();
-	String Team;
-	int x;
-    int flag = 0;
+	private ArrayList<PilotTeam> p = new ArrayList<>();
+	private ArrayList<AssignedPilot> ap = new ArrayList<>();
+	private String Team;
+	
     public Pilot() {}
 	public Pilot(String userName, String password){
 		super(userName, password);
 		readPilotDetails();
-		
+		int x; int flag = 0;
 		for(int i=0; i<p.size(); i++)
 		{   
-			if((p.get(i).userName).compareTo(userName)==0 && (p.get(i).password).compareTo(password)==0)
+			if((p.get(i).getUserName()).compareTo(userName)==0 && (p.get(i).getPassword()).compareTo(password)==0)
 			{
-				Team = p.get(i).Team;
+				Team = p.get(i).getTeam();
 				x = i;
 				flag = 1;
 				System.out.println("Welcome Team:"+Team+"!");
@@ -50,9 +49,6 @@ public class Pilot extends User{
 	public ArrayList<FlightDetails> searchFlight(String a) {
 		  readFlight();
 		  ArrayList<FlightDetails> foundFlights = new ArrayList<>();
-		  //Scanner sc = new Scanner(System.in);
-		  //System.out.println("Departure location to search:");
-		  //String b = sc.nextLine();
 		  
 		  int flag = 0;
 		  
@@ -61,8 +57,6 @@ public class Pilot extends User{
 			 
 			  if(((f.get(i)).getDeparture().equalsIgnoreCase(a)))
 			  {
-				  //System.out.println(f.get(i));
-				  //flag = 1;
 				  foundFlights.add(f.get(i));
 			  }
 			  
@@ -87,13 +81,12 @@ public class Pilot extends User{
 		boolean flag = false;
 		for(int i=0; i<f.size(); i++)
 		{   
-			if(((f.get(i)).getFlightNumber().equalsIgnoreCase(flightNumber)) && (AssgPilots.get(i).pt==null))
+			if(((f.get(i)).getFlightNumber().equalsIgnoreCase(flightNumber)) && (AssgPilots.get(i).getPilotTeam()==null))
 			{
 					//Assigning
 					try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("SessionInfo.dat"))){
 						PilotTeam team = (PilotTeam)infile.readObject();
-						AssgPilots.get(i).pt = team;
-						//System.out.println("Team assigned");
+						AssgPilots.get(i).setPilotTeam(team);
 						flag = true;
 					}catch(Exception e) {
 						System.out.println("Error");
@@ -103,9 +96,7 @@ public class Pilot extends User{
 		}
 		if(flag == false) {
 			return flag;
-			//System.out.println("You cannot be assigned!");
 		}else {
-			//System.out.println("You have been assigned successfully!");
 			try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("FlightAssgDetails.dat"))){
 		 		outfile.writeObject(AssgPilots);
 		 	}catch(Exception e) {

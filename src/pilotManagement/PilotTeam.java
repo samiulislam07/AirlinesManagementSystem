@@ -3,10 +3,10 @@ import java.io.Serializable;
 
 public class PilotTeam implements Serializable {
 
-	public String Team;
-    public String userName;
-	public String password;
-	public PilotDetails[] ob = new PilotDetails [2];
+	private String Team;
+    private String userName;
+	private String password;
+	private PilotDetails[] ob = new PilotDetails [2];
 	
 	public PilotTeam(String Team, String userName, String password, PilotDetails o[])
 	{
@@ -16,8 +16,24 @@ public class PilotTeam implements Serializable {
 		ob = o;
 	}
 	
+	public String getTeam() {
+		return Team;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public PilotDetails getOb(int i) {
+		return ob[i];
+	}
+
 	public String toString() {
 		
-		return "Team:"+Team/*+" Pilot Details:"+ob[0]+"\n"+ob[1]*/;
+		return "Team:"+Team;
 	}
 }

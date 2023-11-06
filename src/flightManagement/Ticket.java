@@ -33,7 +33,14 @@ public class Ticket implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "passengerName: " + passengerName + ", flightNumber: " + flightNumber+", "+seatClass + ", seatNo=" + seatNo+"\n";
+		if(Integer.parseInt(seatNo)>=0 && Integer.parseInt(seatNo)<20) {
+			return "Flight Number: " + flightNumber+", "+seatClass + ", Seat No.ZS " + seatNo+"\n";
+		}else if(Integer.parseInt(seatNo)>=20 && Integer.parseInt(seatNo)<40) {
+			return "Flight Number: " + flightNumber+", "+seatClass + ", Seat No.ZS " + seatNo+"\n";
+		}else {
+			return "Flight Number: " + flightNumber+", "+seatClass + ", Seat No.ZS" + seatNo+"\n";
+		}
+		
 	}
 	
 }

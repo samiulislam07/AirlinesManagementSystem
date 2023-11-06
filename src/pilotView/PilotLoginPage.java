@@ -34,9 +34,6 @@ public class PilotLoginPage extends JFrame {
 	private JTextField userName;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,9 +48,6 @@ public class PilotLoginPage extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public PilotLoginPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 501);
@@ -114,16 +108,16 @@ public class PilotLoginPage extends JFrame {
 						Iterator i = arr.iterator();
 						while(i.hasNext()) {
 							 PilotTeam team = (PilotTeam) i.next();
-					            if (nameToCheck.equals(team.userName) && passToCheck.equals(team.password)) {
+					            if (nameToCheck.equals(team.getUserName()) && passToCheck.equals(team.getPassword())) {
 					            	try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("SessionInfo.dat"))){
 					            		outfile.writeObject(team);
 					            	}
-					            	loginSuccessful = true; // Set the flag to true for a successful login
+					            	loginSuccessful = true; 
 					            	dispose();
 					            	PilotDashboard window = new PilotDashboard();
 					            	window.setLocationRelativeTo(null);
 					            	window.setVisible(true);
-				                    break; // Exit the loop when a match is found
+				                    break;
 					            }
 						}
 					}catch(Exception ex) {
@@ -155,16 +149,16 @@ public class PilotLoginPage extends JFrame {
 						Iterator i = arr.iterator();
 						while(i.hasNext()) {
 							 PilotTeam team = (PilotTeam) i.next();
-					            if (nameToCheck.equals(team.userName) && passToCheck.equals(team.password)) {
+					            if (nameToCheck.equals(team.getUserName()) && passToCheck.equals(team.getPassword())) {
 					            	try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream("SessionInfo.dat"))){
 					            		outfile.writeObject(team);
 					            	}
-					            	loginSuccessful = true; // Set the flag to true for a successful login
+					            	loginSuccessful = true; 
 					            	dispose();
 					            	PilotDashboard window = new PilotDashboard();
 					            	window.setLocationRelativeTo(null);
 					            	window.setVisible(true);
-				                    break; // Exit the loop when a match is found
+				                    break;
 					            }
 						}
 					}catch(Exception ex) {

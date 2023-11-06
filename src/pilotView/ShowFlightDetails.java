@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import flightManagement.FlightDetails;
 import users.Admin;
 import users.Pilot;
+import users.User;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -34,9 +35,6 @@ public class ShowFlightDetails extends JFrame {
 	private JPanel contentPane;
 	private JTextField searchBar;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,9 +49,6 @@ public class ShowFlightDetails extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public ShowFlightDetails() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -75,6 +70,7 @@ public class ShowFlightDetails extends JFrame {
 		contentPane.add(scrollPane);
 		
 		JList list = new JList();
+		list.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		scrollPane.setViewportView(list);
 		
 		JButton btnLoadTable = new JButton("View Flights");
@@ -117,7 +113,7 @@ public class ShowFlightDetails extends JFrame {
 		searchBar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Pilot a = new Pilot();
+					User a = new Pilot();
 					ArrayList<FlightDetails> f = a.searchFlight(searchBar.getText());
 					if(f.size() == 0) {
 						JOptionPane.showMessageDialog(null, "Sorry! Flight is not FOUND");

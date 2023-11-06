@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import flightManagement.FlightDetails;
 import users.Admin;
 import users.Customer;
+import users.User;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -36,9 +37,6 @@ public class ShowingFlightDetails extends JFrame {
 	private JList list;
 	private JScrollPane scrollPane;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -53,9 +51,6 @@ public class ShowingFlightDetails extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public ShowingFlightDetails() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 400);
@@ -89,7 +84,7 @@ public class ShowingFlightDetails extends JFrame {
 		textField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Customer a = new Customer();
+					User a = new Customer();
 					ArrayList<FlightDetails> f = a.searchFlight(textField.getText());
 					if(f.size() == 0) {
 						JOptionPane.showMessageDialog(null, "Sorry! Flight is not FOUND");
@@ -104,7 +99,6 @@ public class ShowingFlightDetails extends JFrame {
 					}
 					catch(Exception exc) {
 						JOptionPane.showMessageDialog(null, "Sorry! Flight is not FOUND");
-						//exc.printStackTrace();
 					}
 				
 			}
@@ -125,7 +119,7 @@ public class ShowingFlightDetails extends JFrame {
 		contentPane.add(scrollPane);
 		
 		list = new JList();
-		list.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		list.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		scrollPane.setViewportView(list);
 		Admin a = new Admin();
 		ArrayList<FlightDetails> f = a.viewFlight();

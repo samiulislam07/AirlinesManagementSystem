@@ -3,8 +3,8 @@ import java.io.Serializable;
 
 public class AssignedPilot implements Serializable {
 
-	 String FlightNumber;
-	 public PilotTeam pt;
+	 private String FlightNumber;
+	 private PilotTeam pt;
 	
 	public AssignedPilot(String FlightNumber,PilotTeam pt){
 		
@@ -15,10 +15,14 @@ public class AssignedPilot implements Serializable {
 	public String getFlightNumber() {
 		return FlightNumber;
 	}
-	public void setFlightNumber(String flightNumber) {
-		FlightNumber = flightNumber;
+	public void setPilotTeam(PilotTeam pt)
+	{
+		this.pt = pt;
 	}
-
+	public PilotTeam getPilotTeam() {
+		
+		return pt;
+	}
 	public String toString() {
 		if(this.pt == null) {
 			return "FlightNumber= "+ FlightNumber +" "+"NOT ASSIGNED";

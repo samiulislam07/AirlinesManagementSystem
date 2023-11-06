@@ -32,9 +32,6 @@ public class AddFlightPage extends JFrame {
 	private JTextField durationTextField;
 	private JTextField durationMinsTextField;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -49,9 +46,6 @@ public class AddFlightPage extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public AddFlightPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 501, 498);

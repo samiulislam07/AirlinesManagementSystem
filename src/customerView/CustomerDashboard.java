@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import adminView.UserTypeWindow;
 import pilotManagement.PilotTeam;
+import users.Admin;
 import users.Customer;
 
 import javax.swing.JLabel;
@@ -23,9 +24,12 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class CustomerDashboard extends JFrame {
 
@@ -36,9 +40,6 @@ public class CustomerDashboard extends JFrame {
 	private JLabel ageField;
 	private Customer customer;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -53,9 +54,6 @@ public class CustomerDashboard extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public CustomerDashboard() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 501);
@@ -188,5 +186,36 @@ public class CustomerDashboard extends JFrame {
 		nameField.setBounds(202, 158, 150, 19);
 		contentPane.add(nameField);
 		nameField.setText(customer.getName());
+		
+		JButton btnNewButton_2 = new JButton("Edit Contact");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String text = JOptionPane.showInputDialog("Enter new contact detail:");
+				customer.setContact(text);
+				contactField.setText(text);
+				customer.editCustomerInfo(text);
+			}
+		});
+		btnNewButton_2.setBounds(71, 393, 109, 23);
+		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton_2_1 = new JButton("Edit Age");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String text = JOptionPane.showInputDialog("Enter new age:");
+				customer.setAge(Integer.parseInt(text));
+				ageField.setText(text);
+				customer.editCustomerInfo(Integer.parseInt(text));
+				
+			}
+		});
+		btnNewButton_2_1.setBounds(202, 393, 109, 23);
+		contentPane.add(btnNewButton_2_1);
+		
+		JLabel lblNewLabel = new JLabel("Edit Information");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(140, 368, 109, 21);
+		contentPane.add(lblNewLabel);
 	}
 }

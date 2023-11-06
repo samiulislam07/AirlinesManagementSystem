@@ -14,7 +14,7 @@ public class Admin extends User {
 	public Admin(){
 		super();
 	}
-	Admin(String userName, String password, String Id)
+	public Admin(String userName, String password, String Id)
 	{
 		super(userName, password);
 		this.Id = Id;
@@ -58,13 +58,11 @@ public class Admin extends User {
 	public ArrayList<FlightDetails> searchFlight(String a) {
 		  readFlight();
 		  ArrayList<FlightDetails> foundFlights = new ArrayList<>();
-		  int flag = 0;
 		  
 		  for(int i=0; i<f.size(); i++)
 		  {
 			  if(((f.get(i)).getFlightNumber()).equalsIgnoreCase(a))
 			  {
-//				  flag = 1;
 				  foundFlights.add(f.get(i));
 			  }
 		  }
@@ -83,25 +81,14 @@ public class Admin extends User {
 			  if(((f.get(i)).getFlightNumber()).equalsIgnoreCase(a) && ap.get(i).getFlightNumber().equalsIgnoreCase(a))
 			  { 
 				flag = true;
-				//return f.get(i);
 				f.remove(i);
 				ap.remove(i);
 				writeFlight();
 				return flag;
-				//System.out.println("Deleted successfully!");
 			  }
-			  
 		   }
 			  
-		  if(flag==false) {
-			  return flag;
-//			  System.out.println("Flight Details Not Found!");
-//			  return new FlightDetails();
-		  }else {
-			  return flag;
-		  }
-		  
-		  
+		  return flag;
 	}
 	
 	public static void addCustomer(Customer c) {
@@ -117,8 +104,6 @@ public class Admin extends User {
 			System.out.println("IOException "+e);
 		}
 	}
-	
-
 	}
 
 	

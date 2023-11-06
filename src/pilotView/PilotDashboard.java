@@ -28,10 +28,7 @@ public class PilotDashboard extends JFrame {
 
 	private JPanel contentPane;
 	private PilotTeam t;
-
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,9 +43,6 @@ public class PilotDashboard extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public PilotDashboard() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 499);
@@ -68,6 +62,7 @@ public class PilotDashboard extends JFrame {
             	}
 				UserTypeWindow window = new UserTypeWindow();
 				dispose();
+				window.setLocationRelativeTo(null);
 				window.setVisible(true);
 			}
 		});
@@ -133,14 +128,14 @@ public class PilotDashboard extends JFrame {
     	}catch(Exception e) {
     		teamNameLabel.setText("");
     	}
-		teamNameLabel.setText(t.Team);
+		teamNameLabel.setText(t.getTeam());
 		
 		JTextPane captainTextPane = new JTextPane();
 		captainTextPane.setBackground(Color.RED);
 		captainTextPane.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		captainTextPane.setBounds(139, 146, 248, 119);
 		contentPane.add(captainTextPane);
-		captainTextPane.setText(t.ob[0].toString());
+		captainTextPane.setText(t.getOb(0).toString());
 		
 		JTextPane CoPilotTextPane = new JTextPane();
 		CoPilotTextPane.setBackground(Color.CYAN);
@@ -148,7 +143,8 @@ public class PilotDashboard extends JFrame {
 		CoPilotTextPane.setEditable(false);
 		CoPilotTextPane.setBounds(400, 146, 248, 119);
 		contentPane.add(CoPilotTextPane);
-		CoPilotTextPane.setText(t.ob[1].toString());
+		CoPilotTextPane.setText(t.getOb(1).toString());
+		
+		
 	}
-
 }

@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -41,7 +43,8 @@ public class TicketBookingPage extends JFrame {
 	JComboBox<String> toBox;
 	JComboBox<String> classBox;
 	JComboBox<String> seatBox;
-	JTextArea bookedSeatsTextArea;
+	ArrayList<FlightDetails> fd = new ArrayList<>();
+	JTextArea bookedSeatsTextArea = new JTextArea("");
 	String selectedFrom;
 	String selectedTo;
 	String selectedFlight;
@@ -49,8 +52,8 @@ public class TicketBookingPage extends JFrame {
 	Seat[] seats;
 	String selectedSeat;
 	FlightDetails flight;
-	ArrayList<FlightDetails> fd = new ArrayList<>();
 	Customer customer;
+	String flightNumber;
 	
 	private void updateFlightInfo() { //for dynamic seat information
 		try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("FDetails.dat"))){
@@ -70,7 +73,6 @@ public class TicketBookingPage extends JFrame {
 	    selectedTo = toBox.getSelectedItem().toString();
 	    boolean flag = false;
 
-	    // Assuming fd contains the list of flights
 	    for (int i = 0; i < fd.size(); i++) {
 	        flight = fd.get(i);
 	        if (selectedFrom.equals(flight.getDeparture()) && selectedTo.equals(flight.getArrival())) {
@@ -84,16 +86,15 @@ public class TicketBookingPage extends JFrame {
 	}
 	
 	private void updateSeatBox() {
-		updateFlightInfo();
-		//updateBookedSeatsTextArea();
+		updateFlightInfo(); 
+		
 		if(flightNumberBox.getSelectedItem() == null || classBox.getSelectedItem() == null || classBox.getSelectedItem().toString().equalsIgnoreCase("Selected Class")) {
 			seatBox.addItem("Select Seat");
 		}else {
-			//seatBox.removeAllItems(); // Clear existing items
+			seatBox.removeAllItems(); 
 			selectedFlight = flightNumberBox.getSelectedItem().toString();
 			selectedClass = classBox.getSelectedItem().toString();
 			
-			// Assuming fd contains the list of flights
 			for (int i = 0; i < fd.size(); i++) {
 				flight = fd.get(i);
 				if (selectedFlight.equals(flight.getFlightNumber())){
@@ -135,10 +136,10 @@ public class TicketBookingPage extends JFrame {
 		
 		try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("Tickets.dat"))){
 			ArrayList<Ticket> ticketArr = (ArrayList<Ticket>)infile.readObject();
-			System.out.println("ticketArr read");
+			//System.out.println("ticketArr read");
 			for(int i=0; i<ticketArr.size(); i++) {
 				if(ticketArr.get(i).getPassengerName().equalsIgnoreCase(customer.getName())) {
-					if (bookedSeatsTextArea != null) { // Additional null check
+					if (bookedSeatsTextArea != null) {
 	                       bookedSeatsTextArea.append(ticketArr.get(i).toString());
 	                }
 				}
@@ -175,9 +176,6 @@ public class TicketBookingPage extends JFrame {
 	}
 
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -191,10 +189,7 @@ public class TicketBookingPage extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public TicketBookingPage(String... flightNumber) {
+	public TicketBookingPage() {
 		try(ObjectInputStream infile = new ObjectInputStream(new FileInputStream("SessionInfo.dat"))){
 			customer = (Customer)infile.readObject();
 		}catch(FileNotFoundException e) {
@@ -206,17 +201,13 @@ public class TicketBookingPage extends JFrame {
 		}
 		
 		updateFlightInfo();
-		updateBookedSeatsTextArea();
 		
-		if(flightNumber.length != 0) {
-			flightNumberBox.addItem(flightNumber[0]);
-			for(int i=0; i<fd.size(); i++) {
-				if(flightNumber[0].equalsIgnoreCase(fd.get(i).getFlightNumber())) {
-					fromBox.addItem(fd.get(i).getDeparture());
-					toBox.addItem(fd.get(i).getArrival());
-				}
-			}
-		}
+		addWindowListener(new WindowAdapter() {
+            public void windowOpened(WindowEvent e) {
+            	updateBookedSeatsTextArea();
+            }
+        });
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 799, 449);
@@ -252,28 +243,25 @@ public class TicketBookingPage extends JFrame {
 		fromBox.setBounds(90, 75, 114, 21);
 		contentPane.add(fromBox);
 		fromBox.addItem("Select Departure");
-		if(flightNumber.length == 0) {
-			for(int i=0; i<fd.size(); i++) {
-				String departure = fd.get(i).getDeparture();
-			    
-			    // Check if the item is already in the ComboBox
-			    boolean alreadyAdded = false;
-			    for (int j = 0; j < fromBox.getItemCount(); j++) {
-			        if (departure.equals(fromBox.getItemAt(j))) {
-			            alreadyAdded = true;
-			            break;
-			        }
-			    }
-			    if (!alreadyAdded) {
-			        fromBox.addItem(departure);
-			    }
-			}
-			fromBox.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					updateFlightNumbers();
+		for(int i=0; i<fd.size(); i++) {
+			String departure = fd.get(i).getDeparture();
+			// Check if the item is already in the ComboBox
+			boolean alreadyAdded = false;
+			for (int j = 0; j < fromBox.getItemCount(); j++) {
+				if (departure.equals(fromBox.getItemAt(j))) {
+					alreadyAdded = true;
+			        break;
 				}
-			});
+			}
+			if (!alreadyAdded) {
+				fromBox.addItem(departure);
+			}
 		}
+		fromBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateFlightNumbers();
+			}
+		});
 		
 		
 		JLabel lblTo = new JLabel("To");
@@ -287,28 +275,26 @@ public class TicketBookingPage extends JFrame {
 		toBox.setBounds(333, 75, 114, 21);
 		contentPane.add(toBox);
 		toBox.addItem("Select Destination");
-		if(flightNumber.length == 0) {
-			for(int i=0; i<fd.size(); i++) {
-				String arrival = fd.get(i).getArrival();
+		for(int i=0; i<fd.size(); i++) {
+			String arrival = fd.get(i).getArrival();
 			    
-			    // Check if the item is already in the ComboBox
-			    boolean alreadyAdded = false;
-			    for (int j = 0; j < toBox.getItemCount(); j++) {
-			        if (arrival.equals(toBox.getItemAt(j))) {
-			            alreadyAdded = true;
-			            break;
-			        }
-			    }
-			    if (!alreadyAdded) {
-			        toBox.addItem(arrival);
-			    }
-			}
-			toBox.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					updateFlightNumbers();
+			// Check if the item is already in the ComboBox
+			boolean alreadyAdded = false;
+			for (int j = 0; j < toBox.getItemCount(); j++) {
+				if (arrival.equals(toBox.getItemAt(j))) {
+					alreadyAdded = true;
+			        break;
 				}
-			});
+			}
+			if (!alreadyAdded) {
+				toBox.addItem(arrival);
+			}
 		}
+		toBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateFlightNumbers();
+			}
+		});
 		
 		
 		JLabel lblFlightNumber = new JLabel("Flight Number");
@@ -334,6 +320,7 @@ public class TicketBookingPage extends JFrame {
 		contentPane.add(scrollPane);
 		
 		bookedSeatsTextArea = new JTextArea();
+		bookedSeatsTextArea.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		scrollPane.setViewportView(bookedSeatsTextArea);
 		bookedSeatsTextArea.setEditable(false);
 		
@@ -363,11 +350,11 @@ public class TicketBookingPage extends JFrame {
 				selectedSeat = seatBox.getSelectedItem().toString();
 				String message = customer.buyTicket(selectedFlight, Integer.parseInt(selectedSeat));
 				generateTicket();
-				System.out.println("Ticket generated");
+				//System.out.println("Ticket generated");
 				JOptionPane.showMessageDialog(null, message);
-				System.out.println("Updating booked seats area");
+				//System.out.println("Updating booked seats area");
 				updateBookedSeatsTextArea();
-				System.out.println("Updating seatBox");
+				//System.out.println("Updating seatBox");
 				updateSeatBox();
 			}
 		});
